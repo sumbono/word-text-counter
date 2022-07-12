@@ -1,0 +1,1 @@
+from word_text_counter import word_text_counter
