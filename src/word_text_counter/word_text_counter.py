@@ -9,6 +9,9 @@ def load_text(filename: str) -> str:
 
     Returns:
         str: a string of text from the file.
+
+    Examples:
+        >>> load_text("data/text.txt")
     """
 
     with open(filename) as textfile:
@@ -23,6 +26,10 @@ def clean_text(txt: str) -> str:
 
     Returns:
         str: cleaned text.
+    
+    Examples:
+        >>> clean_text("Early optimization is the root of all evil!")
+        'early optimization is the root of all evil'
     """
     
     cleaned_txt = txt.lower()
@@ -31,13 +38,19 @@ def clean_text(txt: str) -> str:
     return cleaned_txt
 
 def count_words(filename: str) -> dict:
-    """Count words from a text.
+    """Counting words from a text.
+
+    Words are made lowercase and punctuation is removed before counting.
 
     Args:
         filename (str):  a file path.
 
     Returns:
         dict: total words and count details for each word.
+
+    Examples:
+        >>> from word_text_counter import count_words
+        >>> count_words("data/text.txt")
     """
 
     txt = load_text(filename)

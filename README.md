@@ -10,7 +10,12 @@ $ pip install word_text_counter
 
 ## Usage
 
-- TODO
+```python
+from word_text_counter import count_words
+
+file_path = "data/test.txt" #a path to your text file
+counts = count_words(file_path)
+```
 
 ## Contributing
 
