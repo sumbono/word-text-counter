@@ -1,9 +1,11 @@
-import pytest
+import json
+import pytest, re
 
-from word_text_counter import count_words
+from word_text_counter import count_words, get_flatland_path, get_time_machine_path
 
-def test_count_words():
-    expected = {
+@pytest.fixture
+def pyzen_counts() -> dict:
+    return {
         'total': 143, 
         'details': {
             'the': 6, 'zen': 1, 'of': 3, 'python': 1, 'by': 1, 'tim': 1, 'peters': 1, 'beautiful': 1, 'is': 10, 'better': 8, 'than': 8, 'ugly': 1, 
@@ -16,5 +18,33 @@ def test_count_words():
             'honking': 1, 'great': 1, 'lets': 1, 'more': 1, 'those': 1
         }
     }
-    actual = count_words("tests/pyzen.txt")
-    assert actual == expected, "Pyzen quote counted incorrectly!"
+
+def flatland_counts() -> dict:
+    with open("tests/flatland.json","r") as file:
+        flatland = json.load(file)
+    return flatland
+
+def time_machine_counts() -> dict:
+    with open("tests/time_machine.json","r") as file:
+        time_machine = json.load(file)
+    return time_machine
+
+@pytest.mark.parametrize(
+    "filepath, counts",
+    [
+        (get_flatland_path(),flatland_counts()),
+        (get_time_machine_path(),time_machine_counts())
+    ]
+)
+
+
+def test_count_words(filepath, counts):
+    expected = counts
+    actual = count_words(filepath)
+    assert actual == expected, f"{filepath.split('/')[-1].replace('.txt','')} quote counted incorrectly!"
+
+def test_count_words_error(pyzen_counts):
+    expected = pyzen_counts
+    with pytest.raises(FileNotFoundError, match=re.escape("[Errno 2] No such file or directory: 'data/pyzen.txt'")):
+        actual = count_words("data/pyzen.txt")
+        assert actual == expected, "Pyzen quote counted incorrectly!"
