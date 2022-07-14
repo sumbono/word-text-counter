@@ -1,7 +1,7 @@
 import json
 import pytest, re
 
-from word_text_counter import count_words, get_flatland_path, get_time_machine_path
+from word_text_counter import count_words, get_flatland_path, get_time_machine_path, get_lostworld_path
 
 @pytest.fixture
 def pyzen_counts() -> dict:
@@ -29,11 +29,17 @@ def time_machine_counts() -> dict:
         time_machine = json.load(file)
     return time_machine
 
+def lost_world_counts() -> dict:
+    with open("tests/lost_world.json","r") as file:
+        lost_world = json.load(file)
+    return lost_world
+
 @pytest.mark.parametrize(
     "filepath, counts",
     [
         (get_flatland_path(),flatland_counts()),
-        (get_time_machine_path(),time_machine_counts())
+        (get_time_machine_path(),time_machine_counts()),
+        (get_lostworld_path(),lost_world_counts())
     ]
 )
 

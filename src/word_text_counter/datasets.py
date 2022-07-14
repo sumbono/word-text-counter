@@ -22,3 +22,14 @@ def get_time_machine_path() -> str:
     with resources.path("word_text_counter.data","time_machine.txt") as fp:
         file_path = fp
     return str(file_path)
+
+def get_lostworld_path() -> str:
+    """get sample text file path, with name "lostworld.txt".
+
+    Returns:
+        str: a lostworld.txt path.
+    """
+    
+    with resources.path("word_text_counter.data","lostworld.txt") as fp:
+        file_path = fp
+    return str(file_path)
