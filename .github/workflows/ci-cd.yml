@@ -73,6 +73,7 @@ jobs:
       run: |
         git config user.name sumbono
         git config user.email sumbono@live.com
+        poetry run semantic-release version -v DEBUG
         poetry run semantic-release publish -v DEBUG
 
     - name: Publish to TestPyPI

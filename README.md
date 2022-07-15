@@ -1,3 +1,6 @@
+[![ci-cd](https://github.com/sumbono/word-text-counter/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/sumbono/word-text-counter/actions/workflows/ci-cd.yml)
+[![codecov](https://codecov.io/gh/sumbono/word-text-counter/branch/main/graph/badge.svg?token=IDBOMH3S60)](https://codecov.io/gh/sumbono/word-text-counter)
+
 # word_text_counter
 
 Calculate word counts in a text file!
